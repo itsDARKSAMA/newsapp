@@ -8,7 +8,7 @@ class GamesScreen extends StatelessWidget {
   const GamesScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppCubit, AppState>(
+    return BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (context, state) {
           var list = AppCubit.get(context).gamesList;

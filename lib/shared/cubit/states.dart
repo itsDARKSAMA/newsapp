@@ -1,38 +1,38 @@
-abstract class AppState {}
+abstract class AppStates {}
 
-class AppInitialState extends AppState {}
+class AppInitialState extends AppStates {}
 
-class AppChangeBottomState extends AppState {}
+class AppChangeBottomState extends AppStates {}
 
-class AppChangeScreenState extends AppState {}
+class AppChangeScreenState extends AppStates {}
 
-class AppGetAnimeLoadingState extends AppState {}
+class AppGetAnimeLoadingState extends AppStates {}
 
-class AppGetAnimeNewsSuccessState extends AppState {}
+class AppGetAnimeNewsSuccessState extends AppStates {}
 
-class AppGetAnimeNewsErrorState extends AppState {
+class AppGetAnimeNewsErrorState extends AppStates {
   final String error;
 
   AppGetAnimeNewsErrorState(this.error);
 }
 
-class AppGetGamesLoadingState extends AppState {}
+class AppGetGamesLoadingState extends AppStates {}
 
-class AppGetGamesNewsSuccessState extends AppState {}
+class AppGetGamesNewsSuccessState extends AppStates {}
 
-class AppGetGamesNewsErrorState extends AppState {
+class AppGetGamesNewsErrorState extends AppStates {
   final String error;
 
   AppGetGamesNewsErrorState(this.error);
 }
 
-class AppGetSportsLoadingState extends AppState {}
+class AppGetSportsLoadingState extends AppStates {}
 
-class AppGetSportsNewsSuccessState extends AppState {}
+class AppGetSportsNewsSuccessState extends AppStates {}
 
-class AppGetSportsNewsErrorState extends AppState {
+class AppGetSportsNewsErrorState extends AppStates {
   final String error;
   AppGetSportsNewsErrorState(this.error);
 }
 
-class AppSwitchThemeMode extends AppState {}
+class AppSwitchThemeMode extends AppStates {}

@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapp/modules/anime_screen.dart';
 import 'package:newsapp/modules/games_screen.dart';
-import 'package:newsapp/modules/settings_screen.dart';
 import 'package:newsapp/modules/sport_screen.dart';
-import 'package:newsapp/network/dio_helper.dart';
+import 'package:newsapp/network/remote/dio_helper.dart';
 import 'package:newsapp/shared/cubit/states.dart';
 import 'dart:developer' as developer;
 
-class AppCubit extends Cubit<AppState> {
+class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
   static AppCubit get(context) => BlocProvider.of(context);
 
-  int currntIndex = 0;
+  int currntIndex = 1;
   List screens = const [
     AnimeScreen(),
     GamesScreen(),
     SportScreen(),
-    SettingsScreen(),
   ];
   var bottomNavItems = const [
     BottomNavigationBarItem(
@@ -33,15 +30,11 @@ class AppCubit extends Cubit<AppState> {
       icon: Icon(Icons.sports_soccer),
       label: 'Sports',
     ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      label: 'Settings',
-    ),
   ];
   void changeBottomNav(index) {
     currntIndex = index;
-    if (index == 1) getGamesNews();
-    if (index == 2) getSportsNews();
+    // if (index == 0) getAnimeNews();
+    // if (index == 2) getSportsNews();
     emit(AppChangeBottomState());
   }
 
@@ -116,12 +109,5 @@ class AppCubit extends Cubit<AppState> {
     } else {
       emit(AppGetSportsNewsSuccessState());
     }
-  }
-
-  bool isDark = false;
-
-  void switchThemeMode() {
-    isDark = !isDark;
-    emit(AppSwitchThemeMode());
   }
 }

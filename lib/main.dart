@@ -5,26 +5,43 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:newsapp/layouts/home_layout.dart';
-import 'package:newsapp/network/dio_helper.dart';
+import 'package:newsapp/network/local/cache_helper.dart';
+import 'package:newsapp/network/remote/dio_helper.dart';
 import 'package:newsapp/shared/bloc_observer.dart';
 import 'package:newsapp/shared/cubit/cubit.dart';
+import 'package:newsapp/shared/cubit/mode_cubit.dart';
 import 'package:newsapp/shared/cubit/states.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
-  runApp(const MyApp());
+  await CacheHelper.init();
+  runApp(MyApp(
+    isDark: CacheHelper.getBoolean(key: 'isdark'),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool? isDark;
+  const MyApp({super.key, required this.isDark});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AppCubit>(
-      create: (context) => AppCubit(),
-      child: BlocConsumer<AppCubit, AppState>(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AppCubit()
+            ..getGamesNews()
+            ..getAnimeNews()
+            ..getSportsNews(),
+        ),
+        BlocProvider(
+          create: (context) => ModeCubit()..switchThemeMode(fromShared: isDark),
+        ),
+      ],
+      child: BlocConsumer<ModeCubit, AppStates>(
         listener: (context, state) {
           if (state is AppSwitchThemeMode) {
             log('swticehr lool');
@@ -35,7 +52,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'News App',
             theme: ThemeData(
-              primarySwatch: Colors.deepOrange,
+              primaryColor: HexColor('#B643CD'),
               appBarTheme: const AppBarTheme(
                 // color: Colors.red,
                 actionsIconTheme: IconThemeData(color: Colors.black),
@@ -75,7 +92,8 @@ class MyApp extends StatelessWidget {
               ),
             ),
             darkTheme: ThemeData(
-              primarySwatch: Colors.deepOrange,
+              primaryColor: HexColor('#B643CD'),
+              // primarySwatch: ,
               appBarTheme: AppBarTheme(
                 // color: Colors.red,
                 actionsIconTheme: const IconThemeData(color: Colors.white),
@@ -114,8 +132,10 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-            themeMode:
-                AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
+            themeMode: ModeCubit.get(context).isDark
+                ? ThemeMode.dark
+                : ThemeMode.light,
+            // ThemeMode.dark,
             home: const NewsLayout(),
           );
         },
