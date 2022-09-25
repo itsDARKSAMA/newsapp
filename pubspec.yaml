@@ -22,7 +22,6 @@ dependencies:
   hexcolor: ^2.0.7
   fluid_bottom_nav_bar: ^1.3.0
   shared_preferences: ^2.0.15
-  flutter_native_splash: ^2.2.9
   
 dev_dependencies:
   flutter_test:
@@ -42,9 +41,7 @@ flutter:
   assets:
     - assets/images/
 
-flutter_native_splash:
-  image: "assets/images/splash.png"
-  color: "#B643CD"
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
