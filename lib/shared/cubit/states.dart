@@ -35,4 +35,13 @@ class AppGetSportsNewsErrorState extends AppStates {
   AppGetSportsNewsErrorState(this.error);
 }
 
+class AppGetSearchLoadingState extends AppStates {}
+
+class AppGetSearchNewsSuccessState extends AppStates {}
+
+class AppGetSearchNewsErrorState extends AppStates {
+  final String error;
+  AppGetSearchNewsErrorState(this.error);
+}
+
 class AppSwitchThemeMode extends AppStates {}

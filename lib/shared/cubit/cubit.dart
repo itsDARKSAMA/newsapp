@@ -110,4 +110,27 @@ class AppCubit extends Cubit<AppStates> {
       emit(AppGetSportsNewsSuccessState());
     }
   }
+
+  List<dynamic> searchList = [];
+
+  void getSearch(value) {
+    emit(AppGetSearchLoadingState());
+
+    Map<String, dynamic> query = {
+      'q': '$value',
+      'apiKey': '8b64149574d04d98a2389dcbdd039813',
+    };
+    DioHelper.getData(
+      url: 'v2/everything',
+      query: query,
+    ).then((value) {
+      searchList = value.data['articles'];
+      emit(AppGetSearchNewsSuccessState());
+    }).catchError((error) {
+      developer.log('error is : ${error.data.toString()}');
+      emit(AppGetSearchNewsErrorState(error.toString()));
+    });
+
+    // searchList = [];
+  }
 }

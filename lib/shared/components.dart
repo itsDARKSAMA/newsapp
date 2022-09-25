@@ -133,6 +133,7 @@ class DefaultFormField extends StatelessWidget {
   final Function()? onTap;
   final bool isEnabled;
   final bool isReadOnly;
+  final Function(String)? onChange;
 
   const DefaultFormField({
     Key? key,
@@ -143,6 +144,7 @@ class DefaultFormField extends StatelessWidget {
     this.onTap,
     this.isEnabled = true,
     this.isReadOnly = false,
+    this.onChange,
   }) : super(key: key);
 
   @override
@@ -175,6 +177,7 @@ class DefaultFormField extends StatelessWidget {
       controller: fieldContorller,
       keyboardType: keyboardType,
       onTap: onTap,
+      onChanged: onChange,
       validator: (value) {
         if (value!.isEmpty) {
           return 'Please Enter Search Text';
