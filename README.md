@@ -1,16 +1,27 @@
 # newsapp
 
-A new Flutter project.
+An application that made with <3 by using flutter
 
-## Getting Started
+## API
 
-This project is a starting point for a Flutter application.
+- Newsapi.org - developer api
 
-A few resources to get you started if this is your first Flutter project:
+## Theme Mode
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+-  Dark mode / Light mode
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+# Screenshoots
+
+<p float="left">
+  <img src="screenshots/1.jpg" width="100" />
+  <img src="screenshots/3.jpg" width="100" />
+  <img src="screenshots/4.jpg" width="100" />
+  <img src="screenshots/6.jpg" width="100" />
+</p>
+
+
+# Video Overview
+
+[![overview](https://i.ytimg.com/vi/2prNg75nd3A/maxresdefault.jpg)](https://www.youtube.com/watch?v=2prNg75nd3A "overview")  
