@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapp/shared/components.dart';
 import 'package:newsapp/shared/cubit/cubit.dart';
+import 'package:newsapp/shared/cubit/mode_cubit.dart';
 
 import '../shared/cubit/states.dart';
 
@@ -16,8 +17,21 @@ class SearchScreen extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           var list = AppCubit.get(context).searchList;
+          ModeCubit switchMode = ModeCubit.get(context);
           return Scaffold(
-            appBar: AppBar(),
+            appBar: AppBar(
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    // cubit.switchThemeMode();
+                    switchMode.switchThemeMode();
+                  },
+                  icon: Icon(
+                    switchMode.isDark ? Icons.light_mode : Icons.dark_mode,
+                  ),
+                ),
+              ],
+            ),
             body: Column(
               children: [
                 Padding(
@@ -34,7 +48,7 @@ class SearchScreen extends StatelessWidget {
                 Expanded(
                   // flex: 5,
                   // fit: FlexFit.loose,
-                  child: articleBuilder(list),
+                  child: articleBuilder(list, isSearch: true),
                 ),
               ],
             ),

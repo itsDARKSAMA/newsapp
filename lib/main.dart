@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,9 +41,7 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocConsumer<ModeCubit, AppStates>(
         listener: (context, state) {
-          if (state is AppSwitchThemeMode) {
-            log('swticehr lool');
-          }
+          if (state is AppSwitchThemeMode) {}
         },
         builder: (context, state) {
           return MaterialApp(
@@ -54,12 +50,10 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primaryColor: HexColor('#B643CD'),
               appBarTheme: const AppBarTheme(
-                // color: Colors.red,
-                actionsIconTheme: IconThemeData(color: Colors.black),
+                iconTheme: IconThemeData(color: Colors.black),
                 systemOverlayStyle: SystemUiOverlayStyle(
                   statusBarColor: Colors.transparent,
                   statusBarIconBrightness: Brightness.dark,
-                  // systemNavigationBarColor: Colors.red,
                 ),
                 backgroundColor: Colors.white,
                 elevation: 0,
@@ -67,7 +61,6 @@ class MyApp extends StatelessWidget {
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  // fontFamily: ''
                 ),
               ),
               scaffoldBackgroundColor: Colors.white,
@@ -93,14 +86,11 @@ class MyApp extends StatelessWidget {
             ),
             darkTheme: ThemeData(
               primaryColor: HexColor('#B643CD'),
-              // primarySwatch: ,
               appBarTheme: AppBarTheme(
-                // color: Colors.red,
-                actionsIconTheme: const IconThemeData(color: Colors.white),
+                iconTheme: const IconThemeData(color: Colors.white),
                 systemOverlayStyle: const SystemUiOverlayStyle(
                   statusBarColor: Colors.transparent,
                   statusBarIconBrightness: Brightness.light,
-                  // systemNavigationBarColor: Colors.red,
                 ),
                 backgroundColor: HexColor('#202124'),
                 elevation: 0,
@@ -108,7 +98,6 @@ class MyApp extends StatelessWidget {
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  // fontFamily: ''
                 ),
               ),
               scaffoldBackgroundColor: HexColor('#202124'),

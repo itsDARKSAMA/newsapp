@@ -17,6 +17,13 @@ class AppCubit extends Cubit<AppStates> {
     GamesScreen(),
     SportScreen(),
   ];
+
+  List appTitle = const [
+    'Anime',
+    'Games',
+    'Sports',
+  ];
+
   var bottomNavItems = const [
     BottomNavigationBarItem(
       icon: Icon(Icons.animation_rounded),

@@ -1,7 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_indicator/loading_indicator.dart';
-import 'package:newsapp/modules/search_screen.dart';
+import 'package:newsapp/modules/webview_screen.dart';
 
 class NewsArticleItem extends StatelessWidget {
   final Map article;
@@ -16,7 +16,8 @@ class NewsArticleItem extends StatelessWidget {
         onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const SearchScreen(),
+              builder: (context) =>
+                  WebViewScreen(url: article['url'] ?? 'https://google.com'),
             )),
         child: Row(
           children: [
@@ -108,7 +109,7 @@ Widget articleDiveder() {
   );
 }
 
-Widget articleBuilder(list) {
+Widget articleBuilder(list, {isSearch = false}) {
   return ConditionalBuilder(
     condition: list.isNotEmpty,
     builder: ((context) => ListView.separated(
@@ -121,7 +122,8 @@ Widget articleBuilder(list) {
           separatorBuilder: (context, index) => articleDiveder(),
           itemCount: list.length,
         )),
-    fallback: (context) => defaultLoadingIndicator(),
+    fallback: (context) =>
+        isSearch ? const SizedBox() : defaultLoadingIndicator(),
   );
 }
 
